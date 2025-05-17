@@ -25,8 +25,7 @@
   	</h3>
   	<p>
       Abistado, Ledz Danreb L. <br>
-      Abner, B-jay A. <br>
-      Acedilla, Franz Harold U.
+      Abner, B-jay A.
       
 </body>
 
