@@ -1,0 +1,134 @@
+Initialize an empty list called EMPLOYEES
+Set RUNNING to TRUE
+
+WHILE RUNNING is TRUE DO
+    DISPLAY main menu options (1 to 6)
+    PROMPT user to enter CHOICE
+
+    IF CHOICE is '1' THEN
+        CREATE empty dictionary EMP
+
+        // --- Employee ID Validation ---
+        REPEAT
+            PROMPT user for Employee ID
+            IF ID is NOT numeric THEN
+                DISPLAY error and REPEAT
+            ELSE IF ID already exists in EMPLOYEES THEN
+                DISPLAY error and REPEAT
+            ELSE
+                SET EMP['Employee ID'] = ID
+                BREAK loop
+        END REPEAT
+
+        // --- First Name ---
+        REPEAT
+            PROMPT for First Name
+            IF NOT empty THEN
+                Capitalize first letter
+                SET EMP['First Name']
+                BREAK loop
+            ELSE
+                DISPLAY error
+        END REPEAT
+
+        // --- Last Name ---
+        REPEAT
+            PROMPT for Last Name
+            IF NOT empty THEN
+                Capitalize first letter
+                SET EMP['Last Name']
+                BREAK loop
+            ELSE
+                DISPLAY error
+        END REPEAT
+
+        // --- Gender ---
+        REPEAT
+            PROMPT for Gender
+            IF Gender is "Male" or "Female" THEN
+                Capitalize first letter
+                SET EMP['Gender']
+                BREAK loop
+            ELSE
+                DISPLAY error
+        END REPEAT
+
+        // --- Position ---
+        DEFINE valid positions: Full-time, Part-time, Seasonal, Intern
+        REPEAT
+            PROMPT for Position
+            IF input matches valid position THEN
+                Capitalize first letter
+                SET EMP['Position']
+                BREAK loop
+            ELSE
+                DISPLAY error
+        END REPEAT
+
+        // --- Salary ---
+        REPEAT
+            PROMPT for Salary (without ₱)
+            REMOVE commas
+            IF numeric THEN
+                CONVERT to float
+                FORMAT with ₱, commas, and 2 decimal places
+                SET EMP['Salary']
+                BREAK loop
+            ELSE
+                DISPLAY error
+        END REPEAT
+
+        APPEND EMP to EMPLOYEES
+        DISPLAY "Employee added successfully!"
+
+    ELSE IF CHOICE is '2' THEN
+        IF EMPLOYEES list is empty THEN
+            DISPLAY "No employee records found"
+        ELSE
+            FOR each EMPLOYEE in EMPLOYEES DO
+                DISPLAY all key-value pairs
+            END FOR
+
+    ELSE IF CHOICE is '3' THEN
+        PROMPT for search keyword or ID
+        SET FOUND to FALSE
+        FOR each EMPLOYEE in EMPLOYEES DO
+            IF ID or keyword is in any value THEN
+                DISPLAY all info of EMPLOYEE
+                SET FOUND to TRUE
+        END FOR
+        IF FOUND is FALSE THEN
+            DISPLAY "No matching employee found"
+
+    ELSE IF CHOICE is '4' THEN
+        PROMPT for Employee ID to update
+        FOR each EMPLOYEE in EMPLOYEES DO
+            IF ID matches THEN
+                FOR each field (except ID) DO
+                    PROMPT for new value (can be blank)
+                    IF not blank THEN
+                        VALIDATE and FORMAT based on field type
+                        UPDATE field
+                END FOR
+                DISPLAY "Employee updated successfully"
+                BREAK
+        ELSE
+            DISPLAY "Employee not found"
+
+    ELSE IF CHOICE is '5' THEN
+        PROMPT for Employee ID to delete
+        FOR each EMPLOYEE in EMPLOYEES DO
+            IF ID matches THEN
+                REMOVE EMPLOYEE from list
+                DISPLAY "Employee deleted successfully"
+                BREAK
+        ELSE
+            DISPLAY "Employee not found"
+
+    ELSE IF CHOICE is '6' THEN
+        DISPLAY exit message
+        SET RUNNING to FALSE
+
+    ELSE
+        DISPLAY "Invalid choice"
+END WHILE
